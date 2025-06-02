@@ -11,7 +11,8 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    command: bash -c "composer install && php artisan key:generate && php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000"
+    command: ["entrypoint.sh"]
+
 
   db:
     image: mysql:8.0

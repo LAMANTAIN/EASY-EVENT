@@ -8,25 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class EvenementController extends Controller
 {
-    /**
-     * Affiche la liste des événements de l’organisateur.
-     */
     public function index()
     {
-        return 'ok';
+        $evenements = Evenement::where('organisateur_id', Auth::id())->get();
+
+        return view('evenements.index', compact('evenements'));
     }
 
-    /**
-     * Affiche le formulaire de création.
-     */
     public function create()
     {
         return view('evenements.create');
     }
 
-    /**
-     * Enregistre un nouvel événement.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -47,9 +40,6 @@ class EvenementController extends Controller
         return redirect()->route('evenements.index')->with('success', 'Événement créé.');
     }
 
-    /**
-     * Affiche le formulaire d’édition.
-     */
     public function edit(Evenement $evenement)
     {
         $this->authorizeAccess($evenement);
@@ -57,9 +47,6 @@ class EvenementController extends Controller
         return view('evenements.edit', compact('evenement'));
     }
 
-    /**
-     * Met à jour un événement.
-     */
     public function update(Request $request, Evenement $evenement)
     {
         $this->authorizeAccess($evenement);
@@ -76,9 +63,6 @@ class EvenementController extends Controller
         return redirect()->route('evenements.index')->with('success', 'Événement mis à jour.');
     }
 
-    /**
-     * Supprime un événement.
-     */
     public function destroy(Evenement $evenement)
     {
         $this->authorizeAccess($evenement);
@@ -88,9 +72,6 @@ class EvenementController extends Controller
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé.');
     }
 
-    /**
-     * Vérifie que l'utilisateur peut gérer cet événement.
-     */
     private function authorizeAccess(Evenement $evenement)
     {
         if ($evenement->organisateur_id !== Auth::id()) {
