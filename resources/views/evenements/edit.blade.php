@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-8">
-    <h1 class="text-xl font-bold mb-4">Modifier l’événement</h1>
+    <h1 class="text-xl font-bold mb-4">Modifier un événement</h1>
 
     <form method="POST" action="{{ route('evenements.update', $evenement) }}">
         @csrf

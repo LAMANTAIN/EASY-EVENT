@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-8">
-    <h1 class="text-2xl font-bold mb-4">Mes événements</h1>
+    <h1 class="text-xl font-bold mb-4">Mes événements</h1>
 
     <a href="{{ route('evenements.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">+ Ajouter</a>
 

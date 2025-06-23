@@ -17,7 +17,7 @@ class Evenement extends Model
         'organisateur_id',
     ];
 
-    // ✅ Relation avec l'organisateur
+    // 🔗 Relation vers l’organisateur
     public function organisateur()
     {
         return $this->belongsTo(User::class, 'organisateur_id');
