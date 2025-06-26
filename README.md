@@ -51,11 +51,6 @@ Event-Ease est une application de gestion d'événements permettant aux utilisat
 └── README.md
 ```
 
-## Contribution
-
-Les contributions sont les bienvenues !  
-Veuillez ouvrir une issue ou soumettre une pull request.
-
 ## Licence
 
 Ce projet est sous licence MIT.
