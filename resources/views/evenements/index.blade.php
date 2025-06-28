@@ -1,26 +1,21 @@
+<!-- resources/views/evenements/public.blade.php -->
 @extends('layouts.app')
 
 @section('content')
+<h1>Hello depuis Blade</h1>
+
 <div class="container mx-auto py-8">
-    <h1 class="text-xl font-bold mb-4">Mes événements</h1>
+    <h1 class="text-2xl font-bold mb-6">Tous les événements</h1>
 
-    <a href="{{ route('evenements.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">+ Ajouter</a>
-
-    <ul class="mt-4 space-y-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach ($evenements as $event)
-            <li class="border p-4">
-                <strong>{{ $event->titre }}</strong><br>
-                {{ $event->date }} - {{ $event->lieu }}
-                <div class="mt-2">
-                    <a href="{{ route('evenements.edit', $event) }}" class="text-blue-600">Modifier</a>
-                    <form action="{{ route('evenements.destroy', $event) }}" method="POST" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-600 ml-2" onclick="return confirm('Supprimer ?')">Supprimer</button>
-                    </form>
-                </div>
-            </li>
+            <div class="p-4 border rounded shadow bg-white">
+                <h2 class="text-xl font-semibold">{{ $event->titre }}</h2>
+                <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                <p class="text-gray-600">{{ $event->lieu }}</p>
+                <p class="mt-2 text-gray-700">{{ Str::limit($event->description, 100) }}</p>
+            </div>
         @endforeach
-    </ul>
+    </div>
 </div>
 @endsection

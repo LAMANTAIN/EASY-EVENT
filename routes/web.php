@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EvenementController;
+use App\Models\Evenement;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +32,18 @@ Route::middleware(['auth', 'role:organisateur'])->group(function () {
 });
 Route::middleware(['auth', 'role:organisateur'])->group(function () {
     Route::resource('/evenements', EvenementController::class);
+});
+Route::get('/evenements', function () {
+    $evenements = Evenement::latest()->get();
+    return view('evenements.index', compact('evenements'));
+});
+Route::get('/evenements', function () {
+    $evenements = \App\Models\Evenement::latest()->get();
+    return view('evenements.public', compact('evenements'));
+});
+Route::get('/public-events', function () {
+    $evenements = \App\Models\Evenement::latest()->get();
+    return view('evenements.public', compact('evenements'));
 });
 
 require __DIR__.'/auth.php';
