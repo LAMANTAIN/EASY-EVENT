@@ -53,7 +53,7 @@ Event-Ease est une application de gestion d'événements permettant aux utilisat
 
 ## 📸 Aperçu de l’application
 
-![Liste des événements publics](public/images/capture-public-events.png)
+![Liste des événements publics](public/images/image.png)
 
 ## Licence
 
